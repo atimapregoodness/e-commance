@@ -10,6 +10,7 @@
   z-index: 1000;
   width: 100%;
 
+  /* Header row layout */
   .container,
   .header-row {
     max-width: 1200px;
@@ -21,16 +22,13 @@
     gap: 1rem;
   }
 
-  /* Brand Section */
   .brand-section {
     text-align: center;
     padding: 1rem 0;
-    transition: opacity 0.4s ease, transform 0.4s ease, max-height 0.4s ease,
+    transition: opacity 0.4s ease, transform 0.4s ease, height 0.4s ease,
       padding 0.4s ease, margin 0.4s ease;
     overflow: hidden;
-    max-height: 200px; // instead of auto
   }
-
   .brand {
     display: inline-block;
     text-decoration: none;
@@ -53,15 +51,6 @@
     color: #666;
   }
 
-  /* Hidden state */
-  .brand-section.hide-brand {
-    opacity: 0;
-    transform: translateY(-40px);
-    max-height: 0; // smooth height transition
-    margin: 0;
-    padding: 0;
-  }
-
   /* Bottom Header Row */
   .header-row {
     display: flex;
@@ -69,6 +58,21 @@
     justify-content: space-between;
     padding: 0.6rem 1.5rem;
     transition: all 0.3s ease;
+  }
+
+  /* Brand transition */
+  .brand-section {
+    transition: opacity 0.4s ease, transform 0.4s ease, height 0.4s ease,
+      padding 0.4s ease, margin 0.4s ease;
+    overflow: hidden;
+  }
+
+  .brand-section.hide-brand {
+    opacity: 0;
+    transform: translateY(-40px);
+    height: 0;
+    margin: 0;
+    padding: 0;
   }
 
   /* Overlay for mobile menu */
@@ -81,9 +85,15 @@
     transition: opacity 0.3s ease;
     z-index: 999;
   }
+
   .nav-overlay.active {
     opacity: 1;
     visibility: visible;
+  }
+
+  /* Smooth mobile menu */
+  .site-header.menu-open .main-nav {
+    transform: translateX(0);
   }
 
   /* Navigation */
@@ -198,10 +208,18 @@
 }
 
 .mobile-toggle {
-  opacity: -1; // looks wrong, should probably be 0 or hidden
+  opacity: -1;
 }
 
-/* ================================
+.desktop-nav {
+  display: flex;
+}
+
+#mobile-nav {
+  display: none;
+}
+
+/* ===============================
    Mobile Menu
 ================================ */
 @media (max-width: 768px) {
@@ -209,7 +227,7 @@
     .main-nav {
       position: fixed;
       top: 0;
-      right: -100%;
+      right: -100%; // hidden off-screen
       height: 100vh;
       width: 280px;
       background: #fff;
@@ -236,11 +254,23 @@
 
     &.open {
       .main-nav {
-        right: 0;
+        right: 0; // slides in
       }
+    }
+
+    #mobile-nav {
+      display: block;
+    }
+
+    .desktop-nav {
+      display: none;
+    }
+    .mobile-nav .active {
+      display: list-item;
     }
   }
 
+  /* Optional overlay for better UX */
   .nav-overlay {
     position: fixed;
     top: 0;

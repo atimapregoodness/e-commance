@@ -4,11 +4,12 @@
     <a href="/" class="brand">
       <span class="brand-main">Glorious</span>
       <span class="brand-accent">Stylist</span>
-      <span class="brand-address">
-        47b Adebayo Doherty Road, Lekki Phase 1, Lagos
-      </span>
+      <span class="brand-address"
+        >47b Adebayo Doherty Road, Lekki Phase 1, Lagos</span
+      >
     </a>
   </div>
+
   <div class="header-row">
     <!-- Search -->
     <form
@@ -29,7 +30,7 @@
       </button>
     </form>
 
-    <!-- Actions -->
+    <!-- Header Actions -->
     <div class="header-actions">
       <button class="icon-btn" aria-label="Wishlist">
         <i class="far fa-heart"></i>
@@ -39,14 +40,14 @@
         <span id="cartCount" class="cart-count">0</span>
       </button>
 
-      <!-- Mobile toggle moved here (far right) -->
+      <!-- Mobile toggle -->
       <button class="mobile-toggle" aria-label="Toggle menu">
         <i class="fas fa-bars"></i>
       </button>
     </div>
 
-    <!-- Navigation -->
-    <nav class="main-nav">
+    <!-- Desktop Navigation -->
+    <nav class="main-nav desktop-nav" id="desktop-nav">
       <a class="<%= currentPage === '/' ? 'active' : '' %>" href="/">Home</a>
       <a
         class="<%= currentPage.startsWith('/services') ? 'active' : '' %>"
@@ -58,7 +59,6 @@
         href="/contact"
         >Contact</a
       >
-
       <% if (!user) { %>
       <a href="/auth/login">Login</a>
       <a href="/auth/register" class="btn">Sign up</a>
@@ -71,4 +71,29 @@
       <% } %>
     </nav>
   </div>
+
+  <!-- Mobile Navigation -->
+  <nav class="main-nav mobile-nav" id="mobile-nav">
+    <a class="<%= currentPage === '/' ? 'active' : '' %>" href="/">Home</a>
+    <a
+      class="<%= currentPage.startsWith('/services') ? 'active' : '' %>"
+      href="/services"
+      >Services</a
+    >
+    <a class="<%= currentPage === '/contact' ? 'active' : '' %>" href="/contact"
+      >Contact</a
+    >
+    <% if (!user) { %>
+    <a href="/auth/login">Login</a>
+    <a href="/auth/register" class="btn">Sign up</a>
+    <% } else { %>
+    <a href="/user/profile">My Account</a>
+    <% if (user.role === 'admin') { %>
+    <a href="/admin">Admin</a>
+    <% } %>
+    <a href="/auth/logout">Logout</a>
+    <% } %>
+  </nav>
 </header>
+
+<div class="nav-overlay"></div>
