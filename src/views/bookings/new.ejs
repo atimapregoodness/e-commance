@@ -1,0 +1,13 @@
+<% layout('layout/boilerplate') -%>
+<h2>Book: <%= service.title %></h2>
+<form action="/bookings" method="POST" class="form">
+  <input type="hidden" name="serviceId" value="<%= service._id %>" />
+  <label>Appointment Date & Time</label>
+  <input type="datetime-local" name="appointmentDate" required />
+
+  <label>Notes (optional)</label>
+  <textarea name="notes"></textarea>
+
+  <p>Booking policy: <%= siteInfo.bookingPolicy %></p>
+  <button class="btn" type="submit">Create Booking (Pending)</button>
+</form>

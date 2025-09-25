@@ -1,0 +1,16 @@
+<h2>Manage Bookings</h2>
+<ul>
+  <% bookings.forEach(booking => { %>
+  <li>
+    User: <%= booking.user.name %> - Service: <%= booking.service.name %> -
+    Date: <%= booking.date.toDateString() %> - Status: <%= booking.status %> <%
+    if (booking.depositProof) { %>
+    <img src="<%= booking.depositProof %>" alt="Deposit Proof" width="100" />
+    <% } %>
+    <form action="/admin/bookings/<%= booking._id %>/reply" method="POST">
+      <textarea name="reply" placeholder="Reply to booking"></textarea>
+      <button type="submit">Send Reply</button>
+    </form>
+  </li>
+  <% }) %>
+</ul>

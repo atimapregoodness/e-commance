@@ -1,0 +1,14 @@
+<h2>Book <%= service.name %></h2>
+<form
+  action="/bookings/<%= service._id %>/book"
+  method="POST"
+  enctype="multipart/form-data"
+>
+  <label>Date:</label>
+  <input type="date" name="date" required />
+  <label>Time:</label>
+  <input type="time" name="time" required />
+  <label>Deposit Proof (Receipt):</label>
+  <input type="file" name="depositProof" accept="image/*" required />
+  <button type="submit">Book</button>
+</form>

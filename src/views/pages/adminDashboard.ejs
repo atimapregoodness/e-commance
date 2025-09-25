@@ -1,0 +1,10 @@
+<h2>Admin Dashboard</h2>
+<p>Manage services, bookings, and contacts.</p>
+<a href="/admin/services">Manage Services</a>
+<a href="/admin/bookings">Manage Bookings</a>
+<h3>Recent Contacts</h3>
+<ul>
+  <% contacts.forEach(contact => { %>
+  <li><%= contact.name %> - <%= contact.message %></li>
+  <% }) %>
+</ul>

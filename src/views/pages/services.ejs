@@ -1,0 +1,10 @@
+<h2>Our Services</h2>
+<ul>
+  <% services.forEach(service => { %>
+  <li>
+    <a href="/services/<%= service._id %>"
+      ><%= service.name %> - N<%= service.price %></a
+    >
+  </li>
+  <% }) %>
+</ul>

@@ -1,0 +1,38 @@
+<h2>Manage Services</h2>
+<form action="/admin/services" method="POST" enctype="multipart/form-data">
+  <label>Name:</label>
+  <input type="text" name="name" required />
+  <label>Description:</label>
+  <textarea name="description"></textarea>
+  <label>Price:</label>
+  <input type="number" name="price" required />
+  <label>Image:</label>
+  <input type="file" name="image" accept="image/*" />
+  <button type="submit">Create Service</button>
+</form>
+<ul>
+  <% services.forEach(service => { %>
+  <li>
+    <%= service.name %> - N<%= service.price %>
+    <form
+      action="/admin/services/<%= service._id %>?_method=PUT"
+      method="POST"
+      enctype="multipart/form-data"
+      style="display: inline"
+    >
+      <input type="text" name="name" value="<%= service.name %>" required />
+      <textarea name="description"><%= service.description %></textarea>
+      <input type="number" name="price" value="<%= service.price %>" required />
+      <input type="file" name="image" accept="image/*" />
+      <button type="submit">Update</button>
+    </form>
+    <form
+      action="/admin/services/<%= service._id %>?_method=DELETE"
+      method="POST"
+      style="display: inline"
+    >
+      <button type="submit">Delete</button>
+    </form>
+  </li>
+  <% }) %>
+</ul>

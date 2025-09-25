@@ -1,0 +1,87 @@
+<%- layout("layout/boilerplate") %>
+<h1 id="get">Get our Premium Services</h1>
+<!-- Services grid -->
+  <section id="services" class="products-grid" aria-label="Services">
+    
+    <% if (!services || services.length === 0) { %>
+    <div class="empty-state">No services found.</div>
+    <% } %> <% services.forEach(s => { const product = { id: s._id, title:
+    s.title, price: s.price, image: (s.image && s.image.url) ? s.image.url :
+    '/images/placeholder.jpg', description: s.description }; %>
+    <article
+      class="product-card"
+      tabindex="0"
+      data-product="<%- JSON.stringify(product) %>"
+    >
+      <figure class="product-media">
+        <img src="<%= product.image %>" alt="<%= s.title %>" loading="lazy" />
+        <div class="product-badges">
+          <% if (s.isPopular) { %><span class="badge popular">Popular</span><% }
+          %> <% if (s.discount && s.discount > 0) { %><span
+            class="badge discount"
+            >-<%= s.discount %>%</span
+          ><% } %>
+        </div>
+      </figure>
+
+      <div class="product-body">
+        <h3 class="product-title"><%= s.title %></h3>
+        <p class="product-desc">
+          <%= s.description.substring(0, 110) %><% if (s.description.length >
+          110) { %>...<% } %>
+        </p>
+
+        <div class="product-foot">
+          <div class="price">₦<%= s.price.toLocaleString() %></div>
+          <div class="actions">
+            <button
+              class="btn btn-sm quickview"
+              aria-label="Quick view <%= s.title %>"
+            >
+              <i class="fas fa-eye"></i> Quick view
+            </button>
+            <a href="/services/<%= s._id %>" class="btn btn-sm btn-outline"
+              >Details</a
+            >
+          </div>
+        </div>
+      </div>
+    </article>
+    <% }) %>
+  </section>
+</main>
+
+<!-- Quick view modal -->
+<div
+  id="quickView"
+  class="quickview-backdrop"
+  aria-hidden="true"
+  role="dialog"
+  aria-modal="true"
+>
+  <div class="quickview-panel" role="document" aria-labelledby="qvTitle">
+    <button class="qv-close" id="qvClose" aria-label="Close quick view">
+      <i class="fas fa-times"></i>
+    </button>
+
+    <div class="qv-media">
+      <img id="qvImg" src="/images/placeholder.jpg" alt="Product image" />
+    </div>
+
+    <div class="qv-content">
+      <h2 id="qvTitle">Service title</h2>
+      <div id="qvPrice" class="qv-price">₦0</div>
+      <p id="qvDesc" class="qv-desc">Description</p>
+
+      <div class="qv-actions">
+        <button id="qvAdd" class="btn btn-primary">
+          <i class="fas fa-shopping-cart"></i> Add to cart
+        </button>
+        <a id="qvOpen" class="btn btn-outline" href="#">Open service page</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div id="toast" class="toast" aria-live="polite" role="status"></div>

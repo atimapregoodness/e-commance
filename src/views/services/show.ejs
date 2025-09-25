@@ -1,0 +1,19 @@
+<% layout('layout/boilerplate') -%>
+<article class="service-page">
+  <img
+    src="<%= service.image?.url || '/images/placeholder.jpg' %>"
+    alt="<%= service.title %>"
+  />
+  <h2><%= service.title %></h2>
+  <p><%= service.description %></p>
+  <p><strong>Price:</strong> ₦<%= service.price.toLocaleString() %></p>
+  <p><strong>Duration:</strong> <%= service.durationMins %> minutes</p>
+
+  <% if (!user) { %>
+  <p><a class="btn" href="/auth/register">Create account to book</a></p>
+  <% } else { %>
+  <p>
+    <a class="btn" href="/bookings/new/<%= service._id %>">Book this service</a>
+  </p>
+  <% } %>
+</article>

@@ -1,0 +1,6 @@
+<div class="error-container">
+  <h1><%= status || 500 %></h1>
+  <h2><%= message || "Something went wrong" %></h2>
+  <p><%= error?.stack || "Please try again later." %></p>
+  <a href="/">Go Back Home</a>
+</div>

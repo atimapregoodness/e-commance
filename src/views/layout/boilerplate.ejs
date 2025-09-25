@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1"
+    />
+    <title>
+      <%= typeof pageTitle !== "undefined" ? pageTitle + " | " : "" %><%=
+      brandName %>
+    </title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/images/favicon.png" />
+
+    <!-- SEO meta -->
+    <meta
+      name="description"
+      content="GloriousStylist — Luxury Wig Installation & Styling in Lagos."
+    />
+    <meta
+      name="keywords"
+      content="wig install, wig stylist, Lagos hair, GloriousStylist, beauty salon"
+    />
+    <meta name="author" content="GloriousStylist" />
+
+    <!-- Open Graph (for socials) -->
+    <meta property="og:title" content="GloriousStylist" />
+    <meta
+      property="og:description"
+      content="Luxury Wig Installation & Styling in Lagos."
+    />
+    <meta property="og:image" content="/images/og-image.jpg" />
+    <meta property="og:type" content="website" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-<correct-hash-here>"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Global styles -->
+    <link rel="stylesheet" href="/css/main.css" />
+
+    <!-- Page-specific styles -->
+    <% if (typeof styles !== "undefined") { %> <%- styles %> <% } %>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <%- partial("partials/navbar") %>
+
+    <!-- Alerts -->
+    <%- partial("partials/alerts") %>
+
+    <!-- Main content -->
+    <main class="site-container">
+      <div class="container"><%- body %></div>
+    </main>
+
+    <!-- Footer -->
+    <%- partial("partials/footer") %>
+
+    <!-- Global JS -->
+    <script src="/js/main.js"></script>
+
+    <!-- Page-specific scripts -->
+    <% if (typeof scripts !== "undefined") { %> <%- scripts %> <% } %>
+  </body>
+</html>

@@ -1,0 +1,51 @@
+<% layout('layout/boilerplate') -%>
+<h2>Admin Dashboard</h2>
+
+<section>
+  <h3>Bookings</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>User</th>
+        <th>Service</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% bookings.forEach(b => { %>
+      <tr>
+        <td><%= b._id %></td>
+        <td><%= b.user?.name %></td>
+        <td><%= b.service?.title %></td>
+        <td><%= new Date(b.appointmentDate).toLocaleString() %></td>
+        <td><%= b.status %></td>
+        <td>
+          <form method="POST" action="/admin/bookings/<%= b._id %>/reply">
+            <input name="reply" placeholder="Reply to customer" />
+            <select name="status">
+              <option value="">No change</option>
+              <option value="confirmed">Confirm</option>
+              <option value="cancelled">Cancel</option>
+              <option value="completed">Complete</option>
+            </select>
+            <button class="btn">Reply</button>
+          </form>
+        </td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h3>Services</h3>
+  <a class="btn" href="/admin/services/new">Create Service</a>
+  <ul>
+    <% services.forEach(s => { %>
+    <li><%= s.title %> - ₦<%= s.price %></li>
+    <% }) %>
+  </ul>
+</section>
